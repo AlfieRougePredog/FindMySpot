@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Basic page settings -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Asks search engines not to list this private page -->
+  <meta name="robots" content="noindex, nofollow">
+
+  <title>Administrator Login | FindMySpot</title>
+
+  <!-- Shared CSS first, then the authentication CSS -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/authentication.css">
+</head>
+<body class="auth-body">
+
+  <!-- ===== HEADER: logo and link back to the landing page ===== -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-mark">P</span>
+        <span class="logo-text">FindMy<span>Spot</span></span>
+      </a>
+      <a href="index.html" class="back-link">&larr; Back to Home</a>
+    </div>
+  </header>
+
+  <!-- ===== ADMIN LOGIN CARD ===== -->
+  <main class="auth-page">
+    <div class="auth-card">
+
+      <h1 class="auth-title">Administrator Login</h1>
+      <p class="auth-subtitle">For authorized FindMySpot administrators only.</p>
+
+      <!-- TEMPORARY: shows the demo username and password. Removed in Phase 5. -->
+      <p class="auth-note" id="demo-note"></p>
+
+      <!-- Admin login form -->
+      <form id="admin-login-form">
+        <div class="form-group">
+          <label for="admin-identifier">Username or Email</label>
+          <input type="text" id="admin-identifier" name="identifier" autocomplete="username" required>
+        </div>
+
+        <div class="form-group">
+          <label for="admin-password">Password</label>
+          <input type="password" id="admin-password" name="password" autocomplete="current-password" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-full">Log In as Administrator</button>
+
+        <!-- Messages from JavaScript appear here -->
+        <p class="form-message" id="form-message" role="status"></p>
+      </form>
+
+      <!-- Help for people who arrive here by mistake -->
+      <div class="auth-links">
+        <p>Not an administrator? <a href="login.html">Go to the regular login</a></p>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Demo accounts first (TEMPORARY), then the authentication JavaScript, which uses them -->
+  <script src="js/demo-auth.js"></script>
+  <script src="js/authentication.js"></script>
+</body>
+</html>

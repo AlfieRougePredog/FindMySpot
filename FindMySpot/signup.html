@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Basic page settings -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up | FindMySpot</title>
+
+  <!-- Shared CSS first, then the authentication CSS -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/authentication.css">
+</head>
+<body class="auth-body">
+
+  <!-- ===== HEADER: logo and link back to the landing page ===== -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-mark">P</span>
+        <span class="logo-text">FindMy<span>Spot</span></span>
+      </a>
+      <a href="index.html" class="back-link">&larr; Back to Home</a>
+    </div>
+  </header>
+
+  <!-- ===== SIGNUP CARD ===== -->
+  <main class="auth-page">
+    <div class="auth-card auth-card-wide">
+
+      <h1 class="auth-title">Sign Up</h1>
+      <p class="auth-subtitle">Choose how you will use FindMySpot.</p>
+
+      <!-- Role selector: Driver or Parking Staff -->
+      <div class="role-tabs" role="group" aria-label="Choose account type">
+        <button type="button" class="role-tab active" data-role="driver" aria-pressed="true">Driver</button>
+        <button type="button" class="role-tab" data-role="staff" aria-pressed="false">Parking Staff</button>
+      </div>
+
+      <!-- This text changes when the role changes -->
+      <p class="role-description" id="role-description">
+        Create an account to find parking and check reported slot availability.
+      </p>
+
+      <!-- Signup form -->
+      <form id="signup-form">
+
+        <!-- Fields for everyone: first and last name side by side -->
+        <div class="form-row">
+          <div class="form-group">
+            <label for="signup-first-name">First Name</label>
+            <input type="text" id="signup-first-name" name="firstName" autocomplete="given-name" required>
+          </div>
+          <div class="form-group">
+            <label for="signup-last-name">Last Name</label>
+            <input type="text" id="signup-last-name" name="lastName" autocomplete="family-name" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="signup-email">Email</label>
+          <input type="email" id="signup-email" name="email" autocomplete="email" required>
+        </div>
+
+        <div class="form-group">
+          <label for="signup-mobile">Mobile Number</label>
+          <input type="tel" id="signup-mobile" name="mobile" autocomplete="tel"
+                 pattern="(09|\+639)\d{9}"
+                 title="Use a Philippine mobile number, like 09123456789 or +639123456789"
+                 required>
+          <p class="form-hint">Example: 09123456789</p>
+        </div>
+
+        <!-- Fields for Parking Staff only (hidden when Driver is chosen) -->
+        <div id="staff-fields" hidden>
+          <div class="form-group">
+            <label for="signup-establishment">Establishment</label>
+                        <select id="signup-establishment" name="establishment" required>
+              <option value="" selected disabled>Select your establishment</option>
+              <!-- SAMPLE list only. JavaScript fills it from sample-data.js. In Phase 5, it comes from the database. -->
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="signup-position">Position</label>
+            <input type="text" id="signup-position" name="position" placeholder="For example: Attendant, Cashier, Manager" required>
+          </div>
+
+          <div class="form-group">
+            <label for="signup-invitation-code">Invitation Code</label>
+            <input type="text" id="signup-invitation-code" name="invitationCode" autocomplete="off" required>
+            <p class="form-hint">Enter the code you received for your establishment.</p>
+          </div>
+        </div>
+
+        <!-- Account details for everyone -->
+        <div class="form-group">
+          <label for="signup-username">Username</label>
+          <input type="text" id="signup-username" name="username" autocomplete="username" minlength="4" required>
+        </div>
+
+        <div class="form-group">
+          <label for="signup-password">Password</label>
+          <input type="password" id="signup-password" name="password" autocomplete="new-password" minlength="8" required>
+          <p class="form-hint">At least 8 characters.</p>
+        </div>
+
+        <div class="form-group">
+          <label for="signup-confirm-password">Confirm Password</label>
+          <input type="password" id="signup-confirm-password" name="confirmPassword" autocomplete="new-password" required>
+        </div>
+
+        <!-- Terms and Conditions (Driver only) -->
+        <div class="form-check" id="driver-terms">
+          <label>
+            <input type="checkbox" id="accept-terms" name="acceptTerms" required>
+            <span>I agree to the FindMySpot Terms and Conditions.</span>
+          </label>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-full" id="signup-submit">Create Driver Account</button>
+
+        <!-- Messages from JavaScript appear here -->
+        <p class="form-message" id="form-message" role="status"></p>
+      </form>
+
+      <!-- Other options -->
+      <div class="auth-links">
+        <p>Already have an account? <a href="login.html">Log in</a></p>
+        <p>Own a parking area? <a href="register-establishment.html">Register your establishment</a></p>
+      </div>
+
+    </div>
+  </main>
+
+    <!-- The sample data file has the practice saving code, then the authentication JavaScript -->
+  <script src="js/sample-data.js"></script>
+  <script src="js/authentication.js"></script>
+</body>
+</html>

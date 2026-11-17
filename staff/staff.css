@@ -1,0 +1,408 @@
+
+/* =====================================================
+   FINDMYSPOT - STAFF.CSS
+   Staff dashboard and parking slot management styles.
+   ===================================================== */
+
+
+/* ===== 1. TRIAL NOTICE ===== */
+.trial-notice {
+  max-width: 640px;
+  margin-bottom: var(--space-3);
+  padding: 12px var(--space-2);
+  background-color: rgba(8, 123, 213, 0.15);
+  border-left: 3px solid var(--color-electric-blue);
+  border-radius: 8px;
+  color: var(--color-soft-blue);
+  font-size: var(--font-size-small);
+}
+
+
+/* ===== 2. SUBSCRIPTION CARD ===== */
+.subscription-card {
+  --status-color: var(--color-muted);
+  --status-text: var(--color-navy);
+
+  max-width: 640px;
+  margin-bottom: var(--space-4);
+  padding: var(--space-3);
+  background-color: var(--color-deep-blue);
+  border: 1px solid rgba(0, 200, 245, 0.2);
+  border-left: 4px solid var(--status-color);
+  border-radius: var(--radius);
+}
+
+.subscription-card.status-trial {
+  --status-color: var(--color-electric-blue);
+  --status-text: var(--color-white);
+}
+
+.subscription-card.status-active {
+  --status-color: var(--color-available);
+  --status-text: var(--color-navy);
+}
+
+.subscription-card.status-expired {
+  --status-color: var(--color-occupied);
+  --status-text: var(--color-navy);
+}
+
+.subscription-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-1);
+  margin-bottom: var(--space-2);
+}
+
+.subscription-header h3 {
+  margin: 0;
+}
+
+.status-pill {
+  display: inline-block;
+  padding: 4px 14px;
+  border-radius: 999px;
+  background-color: var(--status-color);
+  color: var(--status-text);
+  font-size: var(--font-size-small);
+  font-weight: 700;
+}
+
+.subscription-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-1);
+  padding: 10px 0;
+  border-top: 1px solid rgba(169, 188, 211, 0.15);
+}
+
+.subscription-label {
+  color: var(--color-muted);
+  font-size: var(--font-size-small);
+}
+
+.subscription-value {
+  font-weight: 600;
+}
+
+.subscription-card .btn {
+  margin-top: var(--space-2);
+}
+
+.subscription-message {
+  min-height: 1.5em;
+  margin: var(--space-1) 0 0;
+  color: var(--color-cyan);
+  font-size: var(--font-size-small);
+}
+
+
+/* ===== 3. DASHBOARD SPACING ===== */
+.dashboard-section .quick-actions {
+  margin-bottom: var(--space-4);
+}
+
+
+/* ===== 4. PARKING AREA DETAILS ===== */
+.parking-area-card,
+.slot-management-card {
+  max-width: 900px;
+  padding: var(--space-3);
+  background-color: var(--color-deep-blue);
+  border: 1px solid rgba(0, 200, 245, 0.2);
+  border-radius: var(--radius);
+}
+
+.parking-detail-row {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(169, 188, 211, 0.15);
+}
+
+.parking-detail-label {
+  color: var(--color-muted);
+  font-size: var(--font-size-small);
+}
+
+.parking-detail-value {
+  font-weight: 600;
+  text-align: right;
+}
+
+
+/* ===== 5. SLOT MANAGEMENT HEADER ===== */
+.slot-area-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: var(--space-3);
+}
+
+.slot-area-header h3 {
+  margin: 0 0 6px;
+}
+
+.slot-area-header p {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: var(--font-size-small);
+}
+
+.slot-update-time {
+  color: var(--color-muted);
+  font-size: var(--font-size-small);
+}
+
+
+/* ===== 6. SLOT SUMMARY ===== */
+.slot-summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: var(--space-3);
+}
+
+.slot-summary-item {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 14px;
+  background-color: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(169, 188, 211, 0.15);
+  border-radius: 10px;
+}
+
+.summary-number {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.summary-label {
+  color: var(--color-muted);
+  font-size: var(--font-size-small);
+}
+
+.available-summary .summary-number {
+  color: var(--color-available);
+}
+
+.occupied-summary .summary-number {
+  color: var(--color-occupied);
+}
+
+
+/* ===== 7. SLOT LEGEND ===== */
+.slot-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin-bottom: var(--space-3);
+  color: var(--color-muted);
+  font-size: var(--font-size-small);
+}
+
+.slot-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.legend-box {
+  width: 13px;
+  height: 13px;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.legend-box.available {
+  background-color: var(--color-available);
+}
+
+.legend-box.occupied {
+  background-color: var(--color-occupied);
+}
+
+
+/* ===== 8. PARKING SLOT BUTTONS ===== */
+.slot-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(105px, 1fr));
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.parking-slot {
+  min-height: 90px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 12px 8px;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.parking-slot:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+.parking-slot:focus-visible {
+  outline: 3px solid var(--color-cyan);
+  outline-offset: 3px;
+}
+
+.parking-slot.available {
+  background-color: rgba(45, 190, 125, 0.15);
+  border-color: var(--color-available);
+  color: var(--color-white);
+}
+
+.parking-slot.occupied {
+  background-color: rgba(235, 75, 75, 0.15);
+  border-color: var(--color-occupied);
+  color: var(--color-white);
+}
+
+.slot-icon {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.slot-name {
+  font-size: var(--font-size-small);
+  font-weight: 700;
+}
+
+.slot-status {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.parking-slot:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+
+/* ===== 9. SAVE CHANGES AREA ===== */
+.slot-save-area {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: var(--space-2);
+  border-top: 1px solid rgba(169, 188, 211, 0.15);
+}
+
+.slot-save-area p {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: var(--font-size-small);
+}
+
+.slot-save-area p.success-message {
+  color: var(--color-available);
+}
+
+.slot-save-area p.error-message {
+  color: var(--color-occupied);
+}
+
+#save-slots-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+
+/* ===== 10. EMPTY MESSAGE ===== */
+.empty-message {
+  color: var(--color-muted);
+  font-size: var(--font-size-small);
+}
+
+
+/* ===== 11. DEMO TOOLS ===== */
+.demo-tools {
+  max-width: 640px;
+  padding: var(--space-2);
+  border: 2px dashed rgba(0, 200, 245, 0.3);
+  border-radius: var(--radius);
+  color: var(--color-muted);
+}
+
+.demo-tools summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--color-soft-blue);
+}
+
+.demo-tools-text {
+  margin: var(--space-2) 0;
+  font-size: var(--font-size-small);
+}
+
+.demo-tools-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.demo-tools-row label {
+  font-size: var(--font-size-small);
+  font-weight: 600;
+}
+
+.demo-tools-row select {
+  padding: 8px 12px;
+  background-color: var(--color-navy);
+  border: 1px solid rgba(169, 188, 211, 0.35);
+  border-radius: var(--radius);
+  color: var(--color-white);
+  font-family: inherit;
+  font-size: var(--font-size-base);
+}
+
+.demo-tools-row select option {
+  background-color: var(--color-navy);
+  color: var(--color-white);
+}
+
+
+/* ===== 12. MOBILE RESPONSIVENESS ===== */
+@media (max-width: 600px) {
+  .slot-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .slot-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .slot-save-area {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .slot-save-area button {
+    width: 100%;
+  }
+
+  .parking-detail-value {
+    text-align: left;
+  }
+}

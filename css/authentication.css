@@ -1,0 +1,283 @@
+/* =====================================================
+   FINDMYSPOT - AUTHENTICATION.CSS
+   Styles for the login, signup, establishment
+   registration and admin login pages.
+   Loads AFTER main.css, so it can use the same variables.
+   ===================================================== */
+
+
+/* ===== 1. PAGE LAYOUT ===== */
+/* Makes sure anything with the "hidden" attribute is really hidden */
+[hidden] {
+  display: none !important;
+}
+
+/* Makes the page at least as tall as the screen, so the card area fills the rest */
+.auth-body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.auth-page {
+  flex: 1;                        /* Takes all the space below the header */
+  display: flex;
+  align-items: center;            /* Centers the card up and down */
+  justify-content: center;        /* Centers the card left and right */
+  padding: var(--space-4) var(--space-2);
+  background:
+    radial-gradient(circle at 50% 30%, rgba(0, 200, 245, 0.12), transparent 50%),
+    linear-gradient(rgba(6, 21, 44, 0.86), rgba(6, 21, 44, 0.92)),
+    url("../assets/images/hero-parking.jpg") center 25% / cover no-repeat;
+  background-color: var(--color-navy);
+}
+
+.back-link {
+  color: var(--color-soft-blue);
+  font-weight: 500;
+}
+
+.back-link:hover {
+  color: var(--color-cyan);
+  text-decoration: none;
+}
+
+
+/* ===== 2. THE CARD ===== */
+.auth-card {
+  width: 100%;
+  max-width: 440px;
+  padding: var(--space-4) var(--space-3);
+  background-color: rgba(11, 36, 71, 0.92);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(0, 200, 245, 0.25);
+  border-radius: var(--radius);
+  box-shadow: var(--glow-cyan);
+}
+
+/* A wider card for pages with more fields (signup, establishment registration) */
+.auth-card-wide {
+  max-width: 560px;
+}
+
+.auth-title {
+  margin: 0 0 var(--space-1);
+  font-size: var(--font-size-h2);
+  text-align: center;
+}
+
+.auth-subtitle {
+  margin: 0 0 var(--space-3);
+  text-align: center;
+  color: var(--color-muted);
+}
+
+/* A small information box */
+.auth-note {
+  margin: 0 0 var(--space-3);
+  padding: var(--space-2);
+  background-color: var(--color-navy);
+  border-left: 3px solid var(--color-cyan);
+  border-radius: 8px;
+  color: var(--color-soft-blue);
+  font-size: var(--font-size-small);
+}
+
+
+/* ===== 3. ROLE SELECTOR (Driver / Parking Staff) ===== */
+.role-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;   /* Two equal columns */
+  gap: var(--space-1);
+  padding: 4px;
+  margin-bottom: var(--space-2);
+  background-color: var(--color-navy);
+  border-radius: var(--radius);
+}
+
+.role-tab {
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  background-color: transparent;
+  color: var(--color-muted);
+  font-family: inherit;
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.role-tab:hover {
+  color: var(--color-white);
+}
+
+/* The tab that is currently chosen */
+.role-tab.active {
+  background-color: var(--color-electric-blue);
+  color: var(--color-white);
+}
+
+.role-description {
+  margin: 0 0 var(--space-3);
+  text-align: center;
+  color: var(--color-soft-blue);
+  font-size: var(--font-size-small);
+}
+
+
+/* ===== 4. FORM FIELDS ===== */
+/* Title that starts a group of fields */
+.form-section-title {
+  margin: var(--space-4) 0 var(--space-2);
+  padding-bottom: var(--space-1);
+  border-bottom: 1px solid rgba(169, 188, 211, 0.15);
+  font-size: var(--font-size-h3);
+  color: var(--color-cyan);
+}
+
+/* The first title in a form needs no space above it */
+.form-section-title:first-child {
+  margin-top: 0;
+}
+
+.form-group {
+  margin-bottom: var(--space-2);
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: var(--font-size-small);
+  font-weight: 600;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 14px;
+  background-color: var(--color-navy);
+  border: 1px solid rgba(169, 188, 211, 0.35);
+  border-radius: var(--radius);
+  color: var(--color-white);
+  font-family: inherit;
+  font-size: var(--font-size-base);
+}
+
+/* Multi-line text box: the user can only make it taller, not wider */
+.form-group textarea {
+  min-height: 90px;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+/* Makes the dropdown list match our dark theme */
+.form-group select option {
+  background-color: var(--color-navy);
+  color: var(--color-white);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: var(--color-muted);
+  opacity: 0.7;
+}
+
+/* When the user clicks into a field, it glows cyan */
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--color-cyan);
+  box-shadow: var(--glow-cyan);
+}
+
+/* File upload field and its "Choose File" button */
+.form-group input[type="file"] {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.form-group input[type="file"]::file-selector-button {
+  margin-right: var(--space-2);
+  padding: 8px 14px;
+  border: none;
+  border-radius: 8px;
+  background-color: var(--color-electric-blue);
+  color: var(--color-white);
+  font-family: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Small helper text under a field */
+.form-hint {
+  margin: 6px 0 0;
+  color: var(--color-muted);
+  font-size: var(--font-size-small);
+}
+
+/* Puts fields side by side. They stack on narrow screens automatically. */
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  column-gap: var(--space-2);
+}
+
+/* Checkbox with its text */
+.form-check {
+  margin-bottom: var(--space-2);
+  font-size: var(--font-size-small);
+}
+
+.form-check label {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-1);
+  cursor: pointer;
+}
+
+.form-check input {
+  margin-top: 4px;
+  accent-color: var(--color-cyan);
+}
+
+/* Full-width button inside forms */
+.btn-full {
+  width: 100%;
+  margin-top: var(--space-1);
+}
+
+/* Message area under the button (filled by JavaScript) */
+.form-message {
+  min-height: 1.5em;               /* Keeps the space reserved, so the card does not jump */
+  margin: var(--space-2) 0 0;
+  text-align: center;
+  color: var(--color-cyan);
+  font-size: var(--font-size-small);
+}
+
+/* Error messages are red */
+.form-message.error {
+  color: var(--color-occupied);
+}
+
+
+/* ===== 5. LINKS UNDER THE FORM ===== */
+.auth-links {
+  margin-top: var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 1px solid rgba(169, 188, 211, 0.15);
+  text-align: center;
+  color: var(--color-muted);
+  font-size: var(--font-size-small);
+}
+
+.auth-links p {
+  margin: 0 0 var(--space-1);
+}
+
+.auth-links p:last-child {
+  margin-bottom: 0;
+}

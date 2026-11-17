@@ -1,0 +1,366 @@
+/* =====================================================
+   FINDMYSPOT - DRIVER.CSS
+   Styles that belong only to the driver dashboard.
+   The shared dashboard layout and the quick-action
+   cards are in css/main.css.
+   ===================================================== */
+
+
+/* ===== 1. FIND PARKING: SEARCH BOX ===== */
+.search-box {
+  max-width: 480px;
+  margin-bottom: var(--space-2);
+}
+
+.search-box label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: var(--font-size-small);
+  font-weight: 600;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 12px 14px;
+  background-color: var(--color-deep-blue);
+  border: 1px solid rgba(169, 188, 211, 0.35);
+  border-radius: var(--radius);
+  color: var(--color-white);
+  font-family: inherit;
+  font-size: var(--font-size-base);
+}
+
+.search-box input::placeholder {
+  color: var(--color-muted);
+  opacity: 0.7;
+}
+
+/* When the user clicks into the search box, it glows cyan */
+.search-box input:focus {
+  outline: none;
+  border-color: var(--color-cyan);
+  box-shadow: var(--glow-cyan);
+}
+
+.sample-note {
+  margin: 0 0 var(--space-3);
+  color: var(--color-muted);
+  font-size: var(--font-size-small);
+}
+
+.result-count {
+  margin: 0 0 var(--space-2);
+  color: var(--color-soft-blue);
+  font-size: var(--font-size-small);
+  font-weight: 600;
+}
+
+.no-results {
+  padding: var(--space-3);
+  border: 2px dashed rgba(0, 200, 245, 0.3);
+  border-radius: var(--radius);
+  text-align: center;
+  color: var(--color-muted);
+}
+
+
+/* ===== 2. FIND PARKING: PARKING CARDS ===== */
+/* auto-fill means: as many columns as fit, each at least 280px wide */
+.parking-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-3);
+}
+
+.parking-card {
+  padding: var(--space-3);
+  background-color: var(--color-deep-blue);
+  border: 1px solid rgba(0, 200, 245, 0.2);
+  border-radius: var(--radius);
+}
+
+.parking-card h3 {
+  margin: 0 0 var(--space-1);
+}
+
+.parking-card p {
+  margin: 0 0 4px;
+  color: var(--color-muted);
+  font-size: var(--font-size-small);
+}
+
+/* The badge that shows how many slots are available */
+.availability-badge {
+  display: inline-block;
+  margin-bottom: var(--space-2);
+  padding: 4px 12px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-size: var(--font-size-small);
+  font-weight: 600;
+}
+
+/* Green: there is space */
+.availability-badge.has-space {
+  background-color: rgba(34, 197, 94, 0.15);
+  border-color: rgba(34, 197, 94, 0.4);
+  color: var(--color-available);
+}
+
+/* Red: the parking area is full */
+.availability-badge.is-full {
+  background-color: rgba(239, 68, 68, 0.15);
+  border-color: rgba(239, 68, 68, 0.4);
+  color: var(--color-occupied);
+}
+
+
+/* ===== 3. INTERACTIVE MAP ===== */
+/* Row with the "Show My Location" button and its message */
+.map-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-2);
+}
+
+.map-message {
+  margin: 0;
+  color: var(--color-cyan);
+  font-size: var(--font-size-small);
+}
+
+.map-message.error {
+  color: var(--color-occupied);
+}
+
+/* The box the map is drawn in. A map needs a height, or it will not show. */
+.map-container {
+  height: 480px;
+  border: 1px solid rgba(0, 200, 245, 0.25);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+/* The round pins. The color depends on the class: has-space, is-full or map-pin-user */
+.map-pin {
+  border: 3px solid var(--color-white);
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.map-pin.has-space {
+  background-color: var(--color-available);
+}
+
+.map-pin.is-full {
+  background-color: var(--color-occupied);
+}
+
+/* The driver's own pin is blue */
+.map-pin-user {
+  background-color: var(--color-electric-blue);
+}
+
+/* The popup that opens when a pin is clicked (dark, to match our theme) */
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+  background-color: var(--color-deep-blue);
+  color: var(--color-white);
+}
+
+.leaflet-popup-content-wrapper {
+  border: 1px solid rgba(0, 200, 245, 0.4);
+  border-radius: var(--radius);
+}
+
+.leaflet-popup-content {
+  margin: 12px 20px 12px 16px;
+  font-family: var(--font-main);
+  line-height: 1.5;
+}
+
+.leaflet-container a.leaflet-popup-close-button {
+  color: var(--color-muted);
+}
+
+.map-popup-name,
+.map-popup-status,
+.map-popup-address {
+  display: block;
+}
+
+.map-popup-name {
+  margin-bottom: 4px;
+  font-size: var(--font-size-base);
+}
+
+.map-popup-status {
+  margin-bottom: 4px;
+  font-size: var(--font-size-small);
+  font-weight: 600;
+}
+
+.map-popup-status.has-space {
+  color: var(--color-available);
+}
+
+.map-popup-status.is-full {
+  color: var(--color-occupied);
+}
+
+.map-popup-address {
+  color: var(--color-muted);
+  font-size: var(--font-size-small);
+}
+
+/* A shorter map on phones */
+@media (max-width: 600px) {
+  .map-container {
+    height: 360px;
+  }
+}
+
+
+/* ===== 4. PARKING DETAILS ===== */
+.details-panel {
+  max-width: 640px;
+  padding: var(--space-3);
+  background-color: var(--color-deep-blue);
+  border: 1px solid rgba(0, 200, 245, 0.2);
+  border-radius: var(--radius);
+}
+
+.details-panel h3 {
+  margin: 0 0 var(--space-1);
+}
+
+/* One line of information: a label on the left, the value on the right */
+.detail-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(169, 188, 211, 0.15);
+  font-size: var(--font-size-small);
+}
+
+.detail-label {
+  min-width: 140px;
+  color: var(--color-muted);
+}
+
+.detail-value {
+  flex: 1;
+}
+
+.details-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+
+
+/* ===== 5. PARKING SLOTS ===== */
+.slots-title {
+  margin: 0 0 var(--space-1);
+}
+
+.slots-summary {
+  margin: 0 0 4px;
+  color: var(--color-soft-blue);
+  font-weight: 600;
+}
+
+.slots-updated {
+  margin: 0 0 var(--space-2);
+  color: var(--color-muted);
+  font-size: var(--font-size-small);
+}
+
+/* The small guide: green = Available, red = Occupied */
+.slot-legend {
+  display: flex;
+  gap: var(--space-3);
+  margin-bottom: var(--space-2);
+  font-size: var(--font-size-small);
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legend-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.legend-dot.is-available {
+  background-color: var(--color-available);
+}
+
+.legend-dot.is-occupied {
+  background-color: var(--color-occupied);
+}
+
+/* The grid of slot boxes */
+.slot-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: var(--space-2);
+  margin-bottom: var(--space-3);
+}
+
+.slot-box {
+  padding: 12px 8px;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  text-align: center;
+}
+
+.slot-box strong,
+.slot-box span {
+  display: block;
+}
+
+.slot-box span {
+  margin-top: 2px;
+  font-size: var(--font-size-small);
+}
+
+.slot-box.is-available {
+  background-color: rgba(34, 197, 94, 0.15);
+  border-color: rgba(34, 197, 94, 0.4);
+  color: var(--color-available);
+}
+
+.slot-box.is-occupied {
+  background-color: rgba(239, 68, 68, 0.15);
+  border-color: rgba(239, 68, 68, 0.4);
+  color: var(--color-occupied);
+}
+
+/* The "View Details" button inside the map popup and parking cards */
+.map-popup-button,
+.card-details-button {
+  margin-top: var(--space-1);
+}
+
+
+
+/* ===== 6. PARKING CARD POLISH ===== */
+/* A small lift and glow when the mouse is over a parking card */
+.parking-card {
+  transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+.parking-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--color-cyan);
+  box-shadow: var(--glow-cyan);
+}

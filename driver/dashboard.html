@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Basic page settings -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Driver Dashboard | FindMySpot</title>
+
+  <!-- "../" means: go up one folder (out of "driver"), then into "css" -->
+  <link rel="stylesheet" href="../css/main.css">
+
+  <!-- Leaflet's own styles for the map (version 1.9.4) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+
+  <!-- driver.css loads LAST, so it can change how the map popups look -->
+  <link rel="stylesheet" href="driver.css">
+</head>
+<body>
+
+  <div class="dashboard">
+
+    <!-- ===== SIDEBAR: logo and menu ===== -->
+    <aside class="sidebar">
+      <a href="../index.html" class="logo">
+        <span class="logo-mark">P</span>
+        <span class="logo-text">FindMy<span>Spot</span></span>
+      </a>
+
+      <nav class="sidebar-nav" aria-label="Driver menu">
+        <button type="button" class="sidebar-link" data-section="dashboard">Dashboard</button>
+        <button type="button" class="sidebar-link" data-section="find-parking">Find Parking</button>
+        <button type="button" class="sidebar-link" data-section="map">Interactive Map</button>
+        <button type="button" class="sidebar-link" data-section="parking-details">Parking Details</button>
+        <button type="button" class="sidebar-link" data-section="parking-slots">Parking Slots</button>
+        <button type="button" class="sidebar-link" data-section="directions">Directions</button>
+        <button type="button" class="sidebar-link" data-section="saved-parking">Saved Parking</button>
+        <button type="button" class="sidebar-link" data-section="history">History</button>
+
+        <div class="sidebar-footer">
+  <a href="../login.html" class="sidebar-link sidebar-logout" data-logout>
+    Log Out
+  </a>
+</div>
+      </nav>
+    </aside>
+
+    <!-- ===== MAIN AREA: top bar and content ===== -->
+    <div class="dashboard-main">
+
+            <!-- Top bar -->
+<header class="topbar">
+  <h1 class="topbar-title">Driver Dashboard</h1>
+
+  <div class="topbar-user">
+    <span>Driver</span>
+
+    <div class="topbar-actions">
+      <button
+        type="button"
+        class="sidebar-link topbar-action"
+        data-section="notifications"
+        aria-label="Notifications"
+        title="Notifications">
+
+        <!-- Bell icon -->
+        <svg xmlns="http://www.w3.org/2000/svg"
+          width="22" height="22" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round"
+          aria-hidden="true">
+          <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"></path>
+          <path d="M10 21h4"></path>
+        </svg>
+      </button>
+
+      <button
+        type="button"
+        class="sidebar-link topbar-action"
+        data-section="profile"
+        aria-label="My Profile"
+        title="My Profile">
+
+        <!-- Profile icon -->
+        <svg xmlns="http://www.w3.org/2000/svg"
+          width="22" height="22" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round"
+          aria-hidden="true">
+          <circle cx="12" cy="8" r="4"></circle>
+          <path d="M5 21v-2a7 7 0 0 1 14 0v2"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+      <main class="dashboard-content">
+
+        <!-- ===== SECTION: Dashboard ===== -->
+        <section class="dashboard-section" id="section-dashboard">
+                    <div class="welcome-banner">
+            <h2>Welcome to FindMySpot</h2>
+            <p>Find parking and check reported slot availability before you arrive.</p>
+          </div>
+
+          <!-- JavaScript fills in the number cards -->
+          <div class="stat-grid" id="stat-grid"></div>
+
+          <div class="quick-actions">
+            <button type="button" class="quick-action" data-section="find-parking">
+              <span class="quick-action-title">Find Parking</span>
+              <span class="quick-action-text">Search participating parking establishments.</span>
+            </button>
+            <button type="button" class="quick-action" data-section="map">
+              <span class="quick-action-title">Interactive Map</span>
+              <span class="quick-action-text">See parking establishments on a map.</span>
+            </button>
+            <button type="button" class="quick-action" data-section="saved-parking">
+              <span class="quick-action-title">Saved Parking</span>
+              <span class="quick-action-text">Open the parking areas you saved.</span>
+            </button>
+          </div>
+        </section>
+
+        <!-- ===== SECTION: Find Parking ===== -->
+        <section class="dashboard-section" id="section-find-parking">
+          <h2>Find Parking</h2>
+          <p class="dashboard-section-intro">Search participating parking establishments.</p>
+
+          <!-- Search box -->
+          <div class="search-box">
+            <label for="parking-search">Search by name or address</label>
+            <input type="search" id="parking-search" placeholder="Type a name or an address">
+          </div>
+
+          <p class="sample-note">Sample data only. Real parking areas appear after the database is connected in Phase 5.</p>
+
+          <!-- JavaScript fills in the result count and the parking cards -->
+          <p class="result-count" id="result-count"></p>
+          <div class="parking-list" id="parking-list"></div>
+
+          <!-- JavaScript shows this message only when nothing matches -->
+          <p class="no-results" id="no-results" hidden>No parking areas match your search.</p>
+        </section>
+
+        <!-- ===== SECTION: Interactive Map ===== -->
+        <section class="dashboard-section" id="section-map">
+          <h2>Interactive Map</h2>
+          <p class="dashboard-section-intro">See participating parking establishments on a map. Select a pin to see its reported availability.</p>
+
+          <p class="sample-note">Sample data only. These locations are made up and are not real parking areas.</p>
+
+          <!-- Button to show the driver's own location, and a message area next to it -->
+          <div class="map-toolbar">
+            <button type="button" class="btn btn-outline btn-small" id="locate-button">Show My Location</button>
+            <p class="map-message" id="map-message" role="status"></p>
+          </div>
+
+          <!-- The map is drawn inside this box -->
+          <div class="map-container" id="parking-map"></div>
+        </section>
+
+                <!-- ===== SECTION: Parking Details ===== -->
+        <section class="dashboard-section" id="section-parking-details">
+          <h2>Parking Details</h2>
+          <p class="dashboard-section-intro">View details about a selected parking establishment.</p>
+
+          <!-- Shown until the driver selects a parking area -->
+          <div class="placeholder-box" id="details-empty">
+            <p>No parking area selected yet. Choose one from Find Parking or the Interactive Map.</p>
+            <button type="button" class="btn btn-outline btn-small" id="details-empty-button">Go to Find Parking</button>
+          </div>
+
+          <!-- JavaScript fills this in when a parking area is selected -->
+          <div class="details-panel" id="details-panel" hidden></div>
+        </section>
+
+        <!-- ===== SECTION: Parking Slots ===== -->
+        <section class="dashboard-section" id="section-parking-slots">
+          <h2>Parking Slots</h2>
+          <p class="dashboard-section-intro">Check the reported Available and Occupied slots.</p>
+
+          <!-- Shown until the driver selects a parking area -->
+          <div class="placeholder-box" id="slots-empty">
+            <p>No parking area selected yet. Choose one from Find Parking or the Interactive Map.</p>
+          </div>
+
+          <!-- JavaScript fills in the title, summary, update time and slot boxes -->
+          <div id="slots-panel" hidden>
+            <h3 class="slots-title" id="slots-title"></h3>
+            <p class="slots-summary" id="slots-summary"></p>
+            <p class="slots-updated" id="slots-updated"></p>
+
+            <div class="slot-legend">
+              <span class="legend-item"><span class="legend-dot is-available"></span>Available</span>
+              <span class="legend-item"><span class="legend-dot is-occupied"></span>Occupied</span>
+            </div>
+
+            <div class="slot-grid" id="slot-grid"></div>
+
+            <p class="sample-note">Availability is reported by parking staff and may change. Sample data only.</p>
+          </div>
+        </section>
+
+                <!-- ===== SECTION: Directions ===== -->
+        <section class="dashboard-section" id="section-directions">
+          <h2>Directions</h2>
+          <p class="dashboard-section-intro">Get directions to a selected parking location.</p>
+
+          <!-- Shown until the driver selects a parking area -->
+          <div class="placeholder-box" id="directions-empty">
+            <p>No parking area selected yet. Choose one from Find Parking or the Interactive Map.</p>
+            <button type="button" class="btn btn-outline btn-small" id="directions-empty-button">Go to Find Parking</button>
+          </div>
+
+          <!-- JavaScript fills this in when a parking area is selected -->
+          <div class="details-panel" id="directions-panel" hidden></div>
+        </section>
+
+        <!-- ===== SECTION: Saved Parking ===== -->
+        <section class="dashboard-section" id="section-saved-parking">
+          <h2>Saved Parking</h2>
+          <p class="dashboard-section-intro">Your saved parking establishments will appear here.</p>
+          <div class="placeholder-box">
+            <span class="coming-soon-tag">Coming soon</span>
+            <p>This section is not built yet. We will build it step by step in the next phases.</p>
+          </div>
+        </section>
+
+        <!-- ===== SECTION: History ===== -->
+        <section class="dashboard-section" id="section-history">
+          <h2>History</h2>
+          <p class="dashboard-section-intro">Your past parking searches and visits will appear here.</p>
+          <div class="placeholder-box">
+            <span class="coming-soon-tag">Coming soon</span>
+            <p>This section is not built yet. We will build it step by step in the next phases.</p>
+          </div>
+        </section>
+
+        
+<!-- ===== SECTION: Notifications ===== -->
+<section class="dashboard-section" id="section-notifications">
+  <h2>Notifications</h2>
+  <p class="dashboard-section-intro">Updates for you will appear here.</p>
+
+  <div class="placeholder-box">
+    <span class="coming-soon-tag">Coming soon</span>
+    <p>This section is not built yet. We will build it step by step in the next phases.</p>
+  </div>
+</section>
+
+<!-- ===== SECTION: My Profile ===== -->
+<section class="dashboard-section" id="section-profile">
+  <h2>My Profile</h2>
+  <p class="dashboard-section-intro">Your account details will appear here.</p>
+
+  <div class="placeholder-box">
+    <span class="coming-soon-tag">Coming soon</span>
+    <p>This section is not built yet. We will build it step by step in the next phases.</p>
+  </div>
+</section>
+
+
+      </main>
+    </div>
+  </div>
+
+  <!-- The ORDER matters here:
+       1. Leaflet first, because map.js needs it
+       2. the shared JavaScript
+       3. the sample data
+       4. the map code
+       5. the driver JavaScript, which uses all of the above -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/sample-data.js"></script>
+  <script src="../js/subscription.js"></script>
+  <script src="../js/map.js"></script>
+  <script src="../js/demo-auth.js"></script>
+  <script src="driver.js"></script>
+  
+</body>
+</html>

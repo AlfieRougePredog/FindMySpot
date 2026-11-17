@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Basic page settings -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Asks search engines not to list this private page -->
+  <meta name="robots" content="noindex, nofollow">
+
+  <title>Admin Dashboard | FindMySpot</title>
+
+  <!-- "../" means: go up one folder (out of "admin"), then into "css" -->
+  <link rel="stylesheet" href="../css/main.css">
+  <!-- admin.css is in the same folder as this page, so no "../" is needed -->
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+  <div class="dashboard">
+
+    <!-- ===== SIDEBAR: logo and menu ===== -->
+    <aside class="sidebar">
+      <a href="../index.html" class="logo">
+        <span class="logo-mark">P</span>
+        <span class="logo-text">FindMy<span>Spot</span></span>
+      </a>
+
+      <nav class="sidebar-nav" aria-label="Admin menu">
+        <button type="button" class="sidebar-link" data-section="dashboard">Dashboard</button>
+        <button type="button" class="sidebar-link" data-section="manage-users">Manage Users</button>
+        <button type="button" class="sidebar-link" data-section="establishment-applications">Establishment Applications</button>
+        <button type="button" class="sidebar-link" data-section="manage-parking-areas">Manage Parking Areas</button>
+        <button type="button" class="sidebar-link" data-section="manage-staff">Manage Staff</button>
+        <button type="button" class="sidebar-link" data-section="invitation-codes">Invitation Codes</button>
+        <button type="button" class="sidebar-link" data-section="parking-monitoring">Parking Monitoring</button>
+        <button type="button" class="sidebar-link" data-section="reports">Reports and Analytics</button>
+        <button type="button" class="sidebar-link" data-section="settings">Settings</button>
+
+          
+      </nav>
+
+      <!-- ===== SIDEBAR FOOTER: Log Out ===== -->
+      <div class="sidebar-footer">
+        <a href="../admin-login.html"
+           class="sidebar-link sidebar-logout"
+           data-logout>
+          Log Out
+        </a>
+      </div>
+    </aside>
+
+
+    <!-- ===== MAIN AREA: top bar and content ===== -->
+    <div class="dashboard-main">
+
+      
+<!-- Top bar -->
+<header class="topbar">
+  <h1 class="topbar-title">Admin Dashboard</h1>
+
+  <div class="topbar-user">
+    <span>Administrator</span>
+
+    <div class="topbar-actions">
+      <button
+        type="button"
+        class="sidebar-link topbar-action"
+        data-section="notifications"
+        aria-label="Notifications"
+        title="Notifications">
+
+        <svg xmlns="http://www.w3.org/2000/svg"
+          width="22" height="22" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round"
+          aria-hidden="true">
+          <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"></path>
+          <path d="M10 21h4"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+
+      <main class="dashboard-content">
+
+        <!-- ===== SECTION: Dashboard ===== -->
+        <section class="dashboard-section" id="section-dashboard">
+                    <div class="welcome-banner">
+            <h2>Welcome, Administrator</h2>
+            <p>Manage establishments, parking areas, staff and invitation codes.</p>
+          </div>
+
+          <!-- JavaScript fills in the number cards -->
+          <div class="stat-grid" id="stat-grid"></div>
+
+          <div class="quick-actions">
+            <button type="button" class="quick-action" data-section="establishment-applications">
+              <span class="quick-action-title">Establishment Applications</span>
+              <span class="quick-action-text">Review applications from parking owners.</span>
+            </button>
+            <button type="button" class="quick-action" data-section="invitation-codes">
+              <span class="quick-action-title">Invitation Codes</span>
+              <span class="quick-action-text">Create and revoke staff invitation codes.</span>
+            </button>
+            <button type="button" class="quick-action" data-section="parking-monitoring">
+              <span class="quick-action-title">Parking Monitoring</span>
+              <span class="quick-action-text">Monitor parking activity.</span>
+            </button>
+          </div>
+        </section>
+
+                <!-- ===== SECTION: Manage Users ===== -->
+        <section class="dashboard-section" id="section-manage-users">
+          <h2>Manage Users</h2>
+          <p class="dashboard-section-intro">View and manage driver accounts.</p>
+
+          <p class="admin-note">Practice version only. Accounts are kept in this browser, and no passwords are saved. In Phase 5 the server enforces suspensions when people log in.</p>
+
+          <p class="code-message" id="users-message" role="status"></p>
+
+          <p class="no-codes" id="no-users" hidden>No driver accounts yet. Accounts appear here after a driver signs up.</p>
+
+          <div class="table-wrapper" id="users-table-wrapper" hidden>
+            <table class="codes-table accounts-table">
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Mobile</th>
+                  <th scope="col">Registered</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="users-table-body"></tbody>
+            </table>
+          </div>
+
+          <div class="application-panel" id="users-panel" hidden></div>
+        </section>
+
+                <!-- ===== SECTION: Establishment Applications ===== -->
+        <section class="dashboard-section" id="section-establishment-applications">
+          <h2>Establishment Applications</h2>
+          <p class="dashboard-section-intro">Approve or reject applications from parking owners.</p>
+
+          <p class="admin-note">Practice version only. Applications are kept in this browser for now, and only the name of the proof file is saved. In Phase 5 the server stores the real file, and you can open it to check it.</p>
+
+          <p class="code-message" id="applications-message" role="status"></p>
+
+          <p class="no-codes" id="no-applications" hidden>No applications yet. Applications appear here after a parking owner submits the registration form.</p>
+
+          <!-- The wrapper lets the table scroll sideways on small screens -->
+          <div class="table-wrapper" id="applications-table-wrapper" hidden>
+            <table class="codes-table applications-table">
+              <thead>
+                <tr>
+                  <th scope="col">Establishment</th>
+                  <th scope="col">Type</th>
+                  <th scope="col">Capacity</th>
+                  <th scope="col">Applicant</th>
+                  <th scope="col">Submitted</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Actions</th>
+                </tr>
+              </thead>
+              <!-- JavaScript fills in the rows -->
+              <tbody id="applications-table-body"></tbody>
+            </table>
+          </div>
+
+          <!-- JavaScript fills this in when the admin clicks Review -->
+          <div class="application-panel" id="application-panel" hidden></div>
+        </section>
+
+                <!-- ===== SECTION: Manage Parking Areas ===== -->
+        <section class="dashboard-section" id="section-manage-parking-areas">
+          <h2>Manage Parking Areas</h2>
+          <p class="dashboard-section-intro">Create parking areas and their individual parking slots.</p>
+
+          <p class="admin-note">Practice version only. Parking areas are kept in this browser for now. In Phase 5 they are stored in the database.</p>
+
+          <p class="code-message" id="areas-message" role="status"></p>
+
+          <!-- ===== Approved applications that still need a parking area ===== -->
+          <h3 class="codes-title">Approved Applications Waiting for a Parking Area</h3>
+          <p class="no-codes" id="no-waiting" hidden>No approved applications are waiting. Approve an application first in Establishment Applications.</p>
+
+          <div class="table-wrapper" id="waiting-table-wrapper" hidden>
+            <table class="codes-table">
+              <thead>
+                <tr>
+                  <th scope="col">Establishment</th>
+                  <th scope="col">Type</th>
+                  <th scope="col">Capacity</th>
+                  <th scope="col">Applicant</th>
+                  <th scope="col">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="waiting-table-body"></tbody>
+            </table>
+          </div>
+
+          <!-- ===== Form: create the parking area (opens when the admin clicks Create) ===== -->
+          <div class="application-panel" id="area-form-panel" hidden>
+            <h3 id="area-form-title"></h3>
+            <p class="admin-note">Tip: in Google Maps, right-click the entrance of the parking area and click the numbers at the top of the menu to copy the coordinates. Example: 7.3089, 125.6842</p>
+
+            <form class="code-form" id="area-form" novalidate>
+              <div class="form-field">
+                <label for="area-latitude">Latitude</label>
+                <input type="text" id="area-latitude" inputmode="decimal" placeholder="7.3089" required>
+              </div>
+
+              <div class="form-field">
+                <label for="area-longitude">Longitude</label>
+                <input type="text" id="area-longitude" inputmode="decimal" placeholder="125.6842" required>
+              </div>
+
+              <div class="form-field">
+                <label for="area-slot-count">Number of slots (1 to 200)</label>
+                <input type="number" id="area-slot-count" min="1" max="200" required>
+              </div>
+
+              <button type="submit" class="btn btn-primary">Create Parking Area</button>
+              <button type="button" class="btn btn-outline" id="area-cancel">Cancel</button>
+            </form>
+
+            <p class="code-message" id="area-form-message" role="status"></p>
+          </div>
+
+          <!-- ===== All parking areas ===== -->
+          <h3 class="codes-title areas-title">Parking Areas</h3>
+          <p class="no-codes" id="no-areas" hidden>No parking areas yet.</p>
+
+          <div class="table-wrapper" id="areas-table-wrapper" hidden>
+            <table class="codes-table areas-table">
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Type</th>
+                  <th scope="col">Slots</th>
+                  <th scope="col">Coordinates</th>
+                  <th scope="col">Last updated</th>
+                  <th scope="col">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="areas-table-body"></tbody>
+            </table>
+          </div>
+        </section>
+
+                <!-- ===== SECTION: Manage Staff ===== -->
+        <section class="dashboard-section" id="section-manage-staff">
+          <h2>Manage Staff</h2>
+          <p class="dashboard-section-intro">Review and manage parking staff accounts, including approvals.</p>
+
+          <p class="admin-note">Practice version only. The invitation code is shown as typed and is not checked yet. In Phase 5 the server checks it, counts its use, and requires email verification before approval counts.</p>
+
+          <p class="code-message" id="staff-message" role="status"></p>
+
+          <p class="no-codes" id="no-staff" hidden>No staff accounts yet. Accounts appear here after staff sign up.</p>
+
+          <div class="table-wrapper" id="staff-table-wrapper" hidden>
+            <table class="codes-table accounts-table">
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Establishment</th>
+                  <th scope="col">Position</th>
+                  <th scope="col">Invitation code</th>
+                  <th scope="col">Registered</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="staff-table-body"></tbody>
+            </table>
+          </div>
+
+          <div class="application-panel" id="staff-panel" hidden></div>
+        </section>
+
+                <!-- ===== SECTION: Invitation Codes ===== -->
+        <section class="dashboard-section" id="section-invitation-codes">
+          <h2>Invitation Codes</h2>
+          <p class="dashboard-section-intro">Generate invitation codes for approved establishments, and revoke them when needed.</p>
+
+          <p class="admin-note">Practice version only. Codes are kept in this browser for now. In Phase 5 the server creates, checks and counts the codes securely.</p>
+
+          <!-- ===== Form: create a new code ===== -->
+          <form class="code-form" id="code-form" novalidate>
+            <div class="form-field">
+              <label for="code-establishment">Establishment</label>
+              <select id="code-establishment" required></select>
+            </div>
+
+            <div class="form-field">
+              <label for="code-expiry">Expires on</label>
+              <input type="date" id="code-expiry" required>
+            </div>
+
+            <div class="form-field">
+              <label for="code-limit">Usage limit (1 to 50)</label>
+              <input type="number" id="code-limit" min="1" max="50" value="1" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Generate Code</button>
+          </form>
+
+          <p class="code-message" id="code-message" role="status"></p>
+
+          <!-- ===== Table of all codes ===== -->
+          <h3 class="codes-title">All Invitation Codes</h3>
+          <p class="no-codes" id="no-codes" hidden>No invitation codes yet. Generate your first code above.</p>
+
+          <!-- The wrapper lets the table scroll sideways on small screens -->
+          <div class="table-wrapper" id="codes-table-wrapper" hidden>
+            <table class="codes-table">
+              <thead>
+                <tr>
+                  <th scope="col">Code</th>
+                  <th scope="col">Establishment</th>
+                  <th scope="col">Expires</th>
+                  <th scope="col">Uses</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Actions</th>
+                </tr>
+              </thead>
+              <!-- JavaScript fills in the rows -->
+              <tbody id="codes-table-body"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ===== SECTION: Parking Monitoring ===== -->
+        <section class="dashboard-section" id="section-parking-monitoring">
+          <h2>Parking Monitoring</h2>
+          <p class="dashboard-section-intro">Monitor parking activity at participating establishments.</p>
+          <div class="placeholder-box">
+            <span class="coming-soon-tag">Coming soon</span>
+            <p>This section is not built yet. We will build it step by step in the next phases.</p>
+          </div>
+        </section>
+
+        <!-- ===== SECTION: Reports and Analytics ===== -->
+        <section class="dashboard-section" id="section-reports">
+          <h2>Reports and Analytics</h2>
+          <p class="dashboard-section-intro">View reports and analytics.</p>
+          <div class="placeholder-box">
+            <span class="coming-soon-tag">Coming soon</span>
+            <p>This section is not built yet. We will build it step by step in the next phases.</p>
+          </div>
+        </section>
+
+        <!-- ===== SECTION: Settings ===== -->
+        <section class="dashboard-section" id="section-settings">
+          <h2>Settings</h2>
+          <p class="dashboard-section-intro">Manage system settings.</p>
+          <div class="placeholder-box">
+            <span class="coming-soon-tag">Coming soon</span>
+            <p>This section is not built yet. We will build it step by step in the next phases.</p>
+          </div>
+        </section>
+
+
+<!-- ===== SECTION: Notifications ===== -->
+<section class="dashboard-section" id="section-notifications">
+  <h2>Notifications</h2>
+  <p class="dashboard-section-intro">
+    Important updates and system notifications will appear here.
+  </p>
+
+  <div class="placeholder-box">
+    <span class="coming-soon-tag">Coming soon</span>
+    <p>This section is not built yet. We will build it step by step in the next phases.</p>
+  </div>
+</section>
+
+
+      </main>
+    </div>
+  </div>
+
+    <!-- Shared JavaScript first, then the sample data (the establishment list), then the admin JavaScript -->
+    <script src="../js/main.js"></script>
+  <script src="../js/sample-data.js"></script>
+  <script src="../js/subscription.js"></script>
+  <script src="../js/demo-auth.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>

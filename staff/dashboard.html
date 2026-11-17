@@ -1,0 +1,290 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Staff Dashboard | FindMySpot</title>
+
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="staff.css">
+</head>
+<body>
+
+  <div class="dashboard">
+
+    <aside class="sidebar">
+      <a href="../index.html" class="logo">
+        <span class="logo-mark">P</span>
+        <span class="logo-text">FindMy<span>Spot</span></span>
+      </a>
+
+      <nav class="sidebar-nav" aria-label="Staff menu">
+  <button type="button" class="sidebar-link" data-section="dashboard">Dashboard</button>
+  <button type="button" class="sidebar-link" data-section="my-parking-area">My Parking Area</button>
+  <button type="button" class="sidebar-link" data-section="manage-slots">Manage Slots</button>
+  <button type="button" class="sidebar-link" data-section="parking-records">Parking Records</button>
+</nav>
+
+<div class="sidebar-footer">
+  <a href="../login.html" class="sidebar-link sidebar-logout" data-logout>
+    Log Out
+  </a>
+</div>
+    </aside>
+
+    <div class="dashboard-main">
+
+      <header class="topbar">
+  <h1 class="topbar-title">Staff Dashboard</h1>
+
+  <div class="topbar-user">
+    <span id="topbar-user-name">Parking Staff</span>
+  </div>
+
+  <div class="topbar-actions">
+    <!-- Notifications Icon -->
+    <button
+      type="button"
+      class="sidebar-link topbar-action"
+      data-section="notifications"
+      aria-label="Notifications"
+      title="Notifications"
+    >
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+           aria-hidden="true">
+        <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"></path>
+        <path d="M10 21h4"></path>
+      </svg>
+    </button>
+
+    <!-- Profile Icon -->
+    <button
+      type="button"
+      class="sidebar-link topbar-action"
+      data-section="profile"
+      aria-label="My Profile"
+      title="My Profile"
+    >
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+           aria-hidden="true">
+        <circle cx="12" cy="8" r="4"></circle>
+        <path d="M5 21v-2a7 7 0 0 1 14 0v2"></path>
+      </svg>
+    </button>
+  </div>
+</header>
+
+      <main class="dashboard-content">
+
+        <!-- DASHBOARD -->
+        <section class="dashboard-section" id="section-dashboard">
+          <h2>Welcome, Parking Staff</h2>
+          <p class="dashboard-section-intro">
+            Keep your parking slots up to date, so drivers can see the latest reported availability.
+          </p>
+
+          <div class="trial-notice" id="trial-notice" hidden></div>
+
+          <article class="subscription-card" id="subscription-card">
+            <div class="subscription-header">
+              <h3>FindMySpot Pro Subscription</h3>
+              <span class="status-pill" id="subscription-status"></span>
+            </div>
+
+            <div class="subscription-row">
+              <span class="subscription-label">Establishment</span>
+              <span class="subscription-value" id="subscription-establishment"></span>
+            </div>
+
+            <div class="subscription-row">
+              <span class="subscription-label">Days left</span>
+              <span class="subscription-value" id="subscription-days"></span>
+            </div>
+
+            <div class="subscription-row">
+              <span class="subscription-label" id="subscription-expiry-label">Expires on</span>
+              <span class="subscription-value" id="subscription-expiry"></span>
+            </div>
+
+            <div class="subscription-row">
+              <span class="subscription-label">Price</span>
+              <span class="subscription-value" id="subscription-price"></span>
+            </div>
+
+            <button type="button" class="btn btn-primary" id="subscription-button">
+              Subscribe Now
+            </button>
+
+            <p class="subscription-message" id="subscription-message" role="status"></p>
+          </article>
+
+          <div class="quick-actions">
+            <button type="button" class="quick-action" data-section="manage-slots">
+              <span class="quick-action-title">Manage Slots</span>
+              <span class="quick-action-text">Mark parking slots as Available or Occupied.</span>
+            </button>
+
+            <button type="button" class="quick-action" data-section="my-parking-area">
+              <span class="quick-action-title">My Parking Area</span>
+              <span class="quick-action-text">View your assigned establishment.</span>
+            </button>
+
+            <button type="button" class="quick-action" data-section="parking-records">
+              <span class="quick-action-title">Parking Records</span>
+              <span class="quick-action-text">View the parking records.</span>
+            </button>
+          </div>
+
+          <details class="demo-tools">
+            <summary>Demo tools (temporary, removed in Phase 5)</summary>
+
+            <p class="demo-tools-text">
+              Pick a test situation to see how the subscription changes. This is for testing only.
+            </p>
+
+            <div class="demo-tools-row">
+              <label for="demo-state">Test situation</label>
+
+              <select id="demo-state">
+                <option value="trial-30">Free trial: 30 days left</option>
+                <option value="trial-8">Free trial: 8 days left</option>
+                <option value="trial-7">Free trial: 7 days left</option>
+                <option value="trial-3">Free trial: 3 days left</option>
+                <option value="trial-ended">Free trial ended</option>
+                <option value="active-20">Paid and active: 20 days left</option>
+                <option value="paid-ended">Paid period ended</option>
+              </select>
+
+              <button type="button" class="btn btn-outline btn-small" id="demo-apply">
+                Apply
+              </button>
+            </div>
+          </details>
+        </section>
+
+        <!-- MY PARKING AREA -->
+        <section class="dashboard-section" id="section-my-parking-area">
+          <h2>My Parking Area</h2>
+          <p class="dashboard-section-intro">
+            View the details of your assigned establishment.
+          </p>
+
+          <div class="parking-area-card" id="staff-parking-details">
+            <p class="empty-message">Loading your parking area...</p>
+          </div>
+        </section>
+
+        <!-- MANAGE SLOTS -->
+        <section class="dashboard-section" id="section-manage-slots">
+          <h2>Manage Slots</h2>
+          <p class="dashboard-section-intro">
+            Click a parking slot to change its status. Save your changes when finished.
+          </p>
+
+          <div class="slot-management-card">
+
+            <div class="slot-area-header">
+              <div>
+                <h3 id="slot-establishment-name">Your Parking Area</h3>
+                <p id="slot-establishment-address"></p>
+              </div>
+
+              <span class="slot-update-time" id="slot-last-updated">
+                Last updated: Not available
+              </span>
+            </div>
+
+            <div class="slot-summary">
+              <div class="slot-summary-item">
+                <span class="summary-number" id="total-slots">0</span>
+                <span class="summary-label">Total Slots</span>
+              </div>
+
+              <div class="slot-summary-item available-summary">
+                <span class="summary-number" id="available-slots">0</span>
+                <span class="summary-label">Available</span>
+              </div>
+
+              <div class="slot-summary-item occupied-summary">
+                <span class="summary-number" id="occupied-slots">0</span>
+                <span class="summary-label">Occupied</span>
+              </div>
+            </div>
+
+            <div class="slot-legend">
+              <span><i class="legend-box available"></i> Available</span>
+              <span><i class="legend-box occupied"></i> Occupied</span>
+            </div>
+
+            <div class="slot-grid" id="slot-grid">
+              <p class="empty-message">Loading parking slots...</p>
+            </div>
+
+            <div class="slot-save-area">
+              <p id="slot-save-message" role="status">
+                No unsaved changes.
+              </p>
+
+              <button type="button" class="btn btn-primary" id="save-slots-button" disabled>
+                Save Changes
+              </button>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- PARKING RECORDS -->
+        <section class="dashboard-section" id="section-parking-records">
+          <h2>Parking Records</h2>
+          <p class="dashboard-section-intro">
+            View the parking records of your establishment.
+          </p>
+
+          <div class="placeholder-box">
+            <span class="coming-soon-tag">Coming soon</span>
+            <p>This section will be developed in a later phase.</p>
+          </div>
+        </section>
+
+        <!-- PROFILE -->
+        <section class="dashboard-section" id="section-profile">
+          <h2>My Profile</h2>
+          <p class="dashboard-section-intro">
+            Your account details will appear here.
+          </p>
+
+          <div class="placeholder-box">
+            <span class="coming-soon-tag">Coming soon</span>
+            <p>This section will be developed in a later phase.</p>
+          </div>
+        </section>
+
+        <!-- NOTIFICATIONS -->
+<section class="dashboard-section" id="section-notifications">
+  <h2>Notifications</h2>
+  <p class="dashboard-section-intro">
+    Important updates about your parking area and account will appear here.
+  </p>
+
+  <div class="placeholder-box">
+    <span class="coming-soon-tag">Coming soon</span>
+    <p>This section will be developed in a later phase.</p>
+  </div>
+</section>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- Script order matters -->
+  <script src="../js/main.js"></script>
+  <script src="../js/sample-data.js"></script>
+  <script src="../js/demo-auth.js"></script>
+  <script src="../js/subscription.js"></script>
+  <script src="staff.js"></script>
+
+</body>
+</html>

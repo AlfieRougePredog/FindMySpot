@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Basic page settings -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register Your Establishment | FindMySpot</title>
+
+  <!-- Shared CSS first, then the authentication CSS -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/authentication.css">
+</head>
+<body class="auth-body">
+
+  <!-- ===== HEADER: logo and link back to the landing page ===== -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-mark">P</span>
+        <span class="logo-text">FindMy<span>Spot</span></span>
+      </a>
+      <a href="index.html" class="back-link">&larr; Back to Home</a>
+    </div>
+  </header>
+
+  <!-- ===== ESTABLISHMENT APPLICATION CARD ===== -->
+  <main class="auth-page">
+    <div class="auth-card auth-card-wide">
+
+      <h1 class="auth-title">Register Your Establishment</h1>
+      <p class="auth-subtitle">Apply to bring your parking area to FindMySpot.</p>
+
+      <p class="auth-note">
+        Every application is reviewed by an administrator before it is approved.
+        FindMySpot supports four-wheeled vehicle parking only.
+      </p>
+
+      <!-- Application form -->
+      <form id="establishment-form">
+
+        <!-- Group 1: the establishment -->
+        <h2 class="form-section-title">Establishment Details</h2>
+
+        <div class="form-group">
+          <label for="establishment-name">Establishment Name</label>
+          <input type="text" id="establishment-name" name="establishmentName" autocomplete="organization" required>
+        </div>
+
+        <div class="form-group">
+          <label for="establishment-type">Establishment Type</label>
+          <select id="establishment-type" name="establishmentType" required>
+            <option value="" selected disabled>Select a type</option>
+            <option value="private-lot">Private Parking Lot</option>
+            <option value="commercial">Mall or Commercial Building</option>
+            <option value="food">Restaurant or Cafe</option>
+            <option value="lodging">Hotel or Lodging</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="establishment-address">Complete Address</label>
+          <textarea id="establishment-address" name="address" rows="3" autocomplete="street-address" required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="establishment-capacity">Four-Wheeled Parking Capacity</label>
+          <input type="number" id="establishment-capacity" name="capacity" min="1" required>
+          <p class="form-hint">The number of parking slots for cars and other four-wheeled vehicles.</p>
+        </div>
+
+        <div class="form-group">
+          <label for="establishment-hours">Operating Hours</label>
+          <input type="text" id="establishment-hours" name="operatingHours" placeholder="For example: Monday to Saturday, 6:00 AM to 10:00 PM" required>
+        </div>
+
+        <!-- Group 2: the person applying -->
+        <h2 class="form-section-title">Owner or Authorized Representative</h2>
+
+        <div class="form-group">
+          <label for="establishment-contact-name">Full Name</label>
+          <input type="text" id="establishment-contact-name" name="contactName" autocomplete="name" required>
+        </div>
+
+        <div class="form-group">
+          <label for="establishment-email">Email</label>
+          <input type="email" id="establishment-email" name="email" autocomplete="email" required>
+        </div>
+
+        <div class="form-group">
+          <label for="establishment-mobile">Mobile Number</label>
+          <input type="tel" id="establishment-mobile" name="mobile" autocomplete="tel"
+                 pattern="(09|\+639)\d{9}"
+                 title="Use a Philippine mobile number, like 09123456789 or +639123456789"
+                 required>
+          <p class="form-hint">Example: 09123456789</p>
+        </div>
+
+        <div class="form-group">
+          <label for="establishment-position">Position</label>
+          <input type="text" id="establishment-position" name="position" placeholder="For example: Owner, Manager" required>
+        </div>
+
+        <!-- Group 3: proof of ownership or authorization -->
+        <h2 class="form-section-title">Proof of Ownership or Authorization</h2>
+
+        <div class="form-group">
+          <label for="establishment-proof">Upload a Document</label>
+          <input type="file" id="establishment-proof" name="proof" accept=".pdf,.jpg,.jpeg,.png" required>
+          <p class="form-hint">PDF, JPG or PNG, up to 5 MB. Examples: business permit, land title, lease contract, or authorization letter.</p>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-full">Submit Application</button>
+
+        <!-- Messages from JavaScript appear here -->
+        <p class="form-message" id="form-message" role="status"></p>
+      </form>
+
+      <!-- Other options -->
+      <div class="auth-links">
+        <p>Already have an account? <a href="login.html">Log in</a></p>
+        <p>Looking for parking, or joining an approved establishment? <a href="signup.html">Sign up</a></p>
+      </div>
+
+    </div>
+  </main>
+
+    <!-- The sample data file has the practice saving code, then the authentication JavaScript -->
+  <script src="js/sample-data.js"></script>
+  <script src="js/authentication.js"></script>
+</body>
+</html>

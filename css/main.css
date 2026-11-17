@@ -1,0 +1,1008 @@
+/* =====================================================
+   FINDMYSPOT - MAIN.CSS
+   Shared design rules used by every page.
+   Other CSS files must load AFTER this one.
+   ===================================================== */
+
+
+/* ===== 1. DESIGN VARIABLES (our official palette and sizes) ===== */
+:root {
+  /* Colors */
+  --color-navy: #06152C;
+  --color-deep-blue: #0B2447;
+  --color-electric-blue: #087BD5;
+  --color-cyan: #00C8F5;
+  --color-white: #FFFFFF;
+  --color-soft-blue: #DDF4FF;
+  --color-available: #22C55E;   /* Available parking slot */
+  --color-occupied: #EF4444;    /* Occupied parking slot */
+  --color-muted: #A9BCD3;       /* Less important text */
+
+  /* Typography */
+  --font-main: "Segoe UI", Roboto, Arial, sans-serif;
+  --font-size-small: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-h3: 1.25rem;
+  --font-size-h2: 1.75rem;
+  --font-size-h1: 2.5rem;
+
+  /* Spacing (use these instead of random numbers) */
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 40px;
+  --space-5: 64px;
+
+  /* Shape and glow */
+  --radius: 10px;
+  --glow-cyan: 0 0 18px rgba(0, 200, 245, 0.35);
+}
+
+
+/* ===== 2. BASIC RESET ===== */
+/* Makes width and padding calculations simpler and predictable */
+* {
+  box-sizing: border-box;
+}
+
+
+/* ===== 3. PAGE BASE STYLES ===== */
+/* Makes clicking a navigation link scroll smoothly */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;       /* Keeps section titles below the sticky header */
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-navy);
+  color: var(--color-white);
+  font-family: var(--font-main);
+  font-size: var(--font-size-base);
+  line-height: 1.6;
+}
+
+
+/* ===== 4. TEXT STYLES ===== */
+h1, h2, h3 {
+  line-height: 1.2;
+  color: var(--color-white);
+}
+
+h1 { font-size: var(--font-size-h1); }
+h2 { font-size: var(--font-size-h2); }
+h3 { font-size: var(--font-size-h3); }
+
+a {
+  color: var(--color-cyan);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.text-muted {
+  color: var(--color-muted);
+}
+
+
+/* ===== 5. LAYOUT HELPER ===== */
+/* Keeps page content centered and not too wide on big screens */
+.container {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 var(--space-3);
+}
+
+
+/* ===== 6. BUTTONS ===== */
+/* Every button on the website starts with .btn, plus one style below */
+.btn {
+  display: inline-block;
+  padding: 12px 28px;
+  border: 2px solid transparent;
+  border-radius: var(--radius);
+  font-family: inherit;
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+.btn:hover {
+  text-decoration: none;
+}
+
+/* Main button (filled) */
+.btn-primary {
+  background-color: var(--color-electric-blue);
+  color: var(--color-white);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-cyan);
+  color: var(--color-navy);
+  box-shadow: var(--glow-cyan);
+}
+
+/* Second button (outlined) */
+.btn-outline {
+  background-color: transparent;
+  border-color: var(--color-cyan);
+  color: var(--color-cyan);
+}
+
+.btn-outline:hover {
+  background-color: rgba(0, 200, 245, 0.1);
+  box-shadow: var(--glow-cyan);
+}
+
+/* Puts buttons side by side with a gap */
+.btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+}
+
+
+/* ===== 7. HEADER (logo and navigation) ===== */
+/* The header stays at the top while scrolling, with a see-through navy background */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: rgba(6, 21, 44, 0.85);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(169, 188, 211, 0.15);
+}
+
+.header-inner {
+  display: flex;
+  flex-wrap: wrap;               /* On small screens, the links move below the logo */
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding-top: var(--space-2);
+  padding-bottom: var(--space-2);
+}
+
+/* Logo */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-white);
+}
+
+.logo:hover {
+  text-decoration: none;
+}
+
+.logo-mark {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--color-electric-blue), var(--color-cyan));
+  color: var(--color-navy);
+  font-weight: 800;
+}
+
+.logo-text span {
+  color: var(--color-cyan);
+}
+
+/* Navigation links */
+.nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav-links a {
+  color: var(--color-soft-blue);
+  font-weight: 500;
+}
+
+.nav-links a:hover {
+  color: var(--color-cyan);
+  text-decoration: none;
+}
+
+
+/* ===== 8. HERO (top section of the landing page) ===== */
+/* Layers, top to bottom: a navy shade (darker on the left, where the text is),
+   then the parking photo. The photo is in assets/images/hero-parking.jpg. */
+.hero {
+  display: flex;
+  align-items: center;
+  min-height: 85vh;
+  padding: var(--space-5) 0;
+  background:
+    linear-gradient(90deg, rgba(6, 21, 44, 0.92) 0%, rgba(6, 21, 44, 0.6) 55%, rgba(6, 21, 44, 0.35) 100%),
+    url("../assets/images/hero-parking.jpg") center 25% / cover no-repeat;
+  background-color: var(--color-navy);   /* Shown while the photo loads */
+}
+
+.hero-content {
+  max-width: 620px;
+}
+
+/* The small label above the headline */
+.hero-label {
+  display: inline-block;
+  margin: 0 0 var(--space-2);
+  padding: 6px 14px;
+  border: 1px solid rgba(0, 200, 245, 0.4);
+  border-radius: 999px;
+  background-color: rgba(0, 200, 245, 0.1);
+  color: var(--color-cyan);
+  font-size: var(--font-size-small);
+  font-weight: 600;
+}
+
+.hero h1 {
+  margin: 0 0 var(--space-2);
+  /* clamp(smallest, flexible, biggest): the title resizes smoothly with the screen */
+  font-size: clamp(2.25rem, 6vw, 3.5rem);
+  /* Splits the headline evenly, so one word is not left alone on a line */
+  text-wrap: balance;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.5);
+}
+
+.hero-text {
+  margin: 0 0 var(--space-3);
+  color: var(--color-soft-blue);
+  font-size: 1.125rem;
+}
+
+.hero-register {
+  margin: var(--space-3) 0 0;
+  color: var(--color-muted);
+}
+
+/* On phones the text covers the whole picture, so the shade is even and darker */
+@media (max-width: 700px) {
+  .hero {
+    min-height: 80vh;
+    background:
+      linear-gradient(rgba(6, 21, 44, 0.8), rgba(6, 21, 44, 0.88)),
+      url("../assets/images/hero-parking.jpg") center 25% / cover no-repeat;
+    background-color: var(--color-navy);
+  }
+}
+
+
+/* ===== 9. CONTENT SECTIONS (About, How It Works, Contact) ===== */
+.section {
+  padding: var(--space-5) 0;
+}
+
+/* A second background color, so neighboring sections are easy to tell apart */
+.section-alt {
+  background-color: var(--color-deep-blue);
+}
+
+.section-title {
+  margin: 0 0 var(--space-1);
+  text-align: center;
+}
+
+.section-intro {
+  max-width: 640px;
+  margin: 0 auto var(--space-4);
+  text-align: center;
+  color: var(--color-muted);
+}
+
+.section-note {
+  margin: var(--space-3) 0 0;
+  text-align: center;
+  color: var(--color-muted);
+  font-size: var(--font-size-small);
+}
+
+/* Cards sit in a grid. auto-fit means: as many columns as fit, at least 240px wide */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-3);
+}
+
+.card {
+  padding: var(--space-3);
+  background-color: var(--color-deep-blue);
+  border: 1px solid rgba(0, 200, 245, 0.2);
+  border-radius: var(--radius);
+  transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+/* A small lift and glow when the mouse is over a card */
+.card:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-cyan);
+  box-shadow: var(--glow-cyan);
+}
+
+/* On a deep blue section, cards use navy so they still stand out */
+.section-alt .card {
+  background-color: var(--color-navy);
+}
+
+.card h3 {
+  margin: 0 0 var(--space-1);
+}
+
+.card p {
+  margin: 0;
+  color: var(--color-muted);
+}
+
+/* Number circle used in the How It Works steps */
+.step-number {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  margin-bottom: var(--space-2);
+  border-radius: 50%;
+  background-color: var(--color-electric-blue);
+  font-weight: 700;
+}
+
+
+/* ===== 10. FOOTER ===== */
+.site-footer {
+  padding: var(--space-3) 0;
+  border-top: 1px solid rgba(169, 188, 211, 0.15);
+  text-align: center;
+  color: var(--color-muted);
+  font-size: var(--font-size-small);
+}
+
+.site-footer .footer-credit {
+  margin-top: var(--space-1);
+  font-size: 0.75rem;
+  opacity: 0.8;
+}
+
+
+/* ===== 11. DASHBOARD LAYOUT (shared by the driver, staff and admin dashboards) ===== */
+/* The whole dashboard: sidebar on the left, main area on the right */
+.dashboard {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;                 /* The sidebar never gets squeezed */
+  width: 260px;
+  padding: var(--space-3) var(--space-2);
+  background: linear-gradient(180deg, var(--color-deep-blue), var(--color-navy));
+  border-right: 1px solid rgba(169, 188, 211, 0.15);
+  /* The sidebar stays in place while the page scrolls */
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.sidebar .logo {
+  margin-bottom: var(--space-4);
+  padding: 0 var(--space-1);
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sidebar-link {
+  display: block;
+  width: 100%;
+  padding: 12px var(--space-2);
+  border: none;
+  border-radius: var(--radius);
+  background-color: transparent;
+  color: var(--color-soft-blue);
+  font-family: inherit;
+  font-size: var(--font-size-base);
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.sidebar-link:hover {
+  background-color: rgba(0, 200, 245, 0.08);
+  color: var(--color-cyan);
+}
+
+/* The menu item for the section that is open now: blue, with a cyan marker on the left */
+.sidebar-link.active {
+  background: linear-gradient(90deg, var(--color-electric-blue), rgba(8, 123, 213, 0.55));
+  color: var(--color-white);
+  box-shadow: inset 3px 0 0 var(--color-cyan), var(--glow-cyan);
+}
+
+
+/* Main area */
+.dashboard-main {
+  flex: 1;
+  min-width: 0;                   /* Lets the content shrink instead of overflowing */
+  background: radial-gradient(circle at 85% 0%, rgba(0, 200, 245, 0.08), transparent 40%);
+}
+
+/* Top bar */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 1100;                  /* Above the map buttons */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  background-color: rgba(6, 21, 44, 0.88);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(169, 188, 211, 0.15);
+}
+
+.topbar-title {
+  margin: 0;
+  font-size: var(--font-size-h3);
+}
+
+.topbar-user {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--color-muted);
+}
+
+/* A smaller version of a button (use together with .btn) */
+.btn-small {
+  padding: 8px 16px;
+  font-size: var(--font-size-small);
+}
+
+/* Content area */
+.dashboard-content {
+  padding: var(--space-4);
+}
+
+.dashboard-section h2 {
+  margin: 0 0 var(--space-1);
+}
+
+.dashboard-section-intro {
+  margin: 0 0 var(--space-3);
+  color: var(--color-muted);
+}
+
+/* Box for sections that are not built yet */
+.placeholder-box {
+  padding: var(--space-4) var(--space-3);
+  border: 2px dashed rgba(0, 200, 245, 0.3);
+  border-radius: var(--radius);
+  text-align: center;
+  color: var(--color-muted);
+}
+
+.placeholder-box p {
+  margin: 0;
+}
+
+.coming-soon-tag {
+  display: inline-block;
+  margin-bottom: var(--space-1);
+  padding: 2px 12px;
+  border-radius: 999px;
+  background-color: rgba(0, 200, 245, 0.12);
+  color: var(--color-cyan);
+  font-size: var(--font-size-small);
+  font-weight: 600;
+}
+
+/* Quick-action cards on the Dashboard section */
+.quick-actions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-3);
+}
+
+.quick-action {
+  padding: var(--space-3);
+  background-color: var(--color-deep-blue);
+  border: 1px solid rgba(0, 200, 245, 0.2);
+  border-radius: var(--radius);
+  color: var(--color-white);
+  font-family: inherit;
+  font-size: var(--font-size-base);
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.quick-action:hover {
+  border-color: var(--color-cyan);
+  box-shadow: var(--glow-cyan);
+}
+
+.quick-action-title {
+  display: block;
+  margin-bottom: var(--space-1);
+  font-size: var(--font-size-h3);
+  font-weight: 700;
+}
+
+.quick-action-text {
+  display: block;
+  color: var(--color-muted);
+}
+
+/* On tablets and phones: the sidebar moves to the top, and its menu scrolls sideways */
+@media (max-width: 800px) {
+  .dashboard {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    padding: var(--space-2);
+    border-right: none;
+    border-bottom: 1px solid rgba(169, 188, 211, 0.15);
+      position: static;
+  height: auto;
+  overflow-y: visible;
+  }
+  
+
+  .sidebar .logo {
+    margin-bottom: var(--space-2);
+  }
+
+  .sidebar-nav {
+    flex-direction: row;
+    overflow-x: auto;
+  }
+
+  .sidebar-link {
+    width: auto;
+    white-space: nowrap;
+  }
+
+  .topbar {
+    padding: var(--space-2);
+  }
+
+  .dashboard-content {
+    padding: var(--space-3) var(--space-2);
+  }
+}
+
+
+/* ===== 12. SMALL SCREENS (phones) ===== */
+@media (max-width: 600px) {
+  :root {
+    --font-size-h1: 2rem;
+    --font-size-h2: 1.5rem;
+  }
+}
+
+
+
+/* ===== 13. DASHBOARD HOME: WELCOME BANNER AND NUMBER CARDS ===== */
+/* The banner uses the parking photo, under a navy shade (darker on the left, where the text is) */
+.welcome-banner {
+  margin-bottom: var(--space-3);
+  padding: var(--space-4);
+  border: 1px solid rgba(0, 200, 245, 0.25);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(90deg, rgba(6, 21, 44, 0.94) 0%, rgba(6, 21, 44, 0.75) 60%, rgba(6, 21, 44, 0.55) 100%),
+    url("../assets/images/hero-parking.jpg") center 30% / cover no-repeat;
+  background-color: var(--color-deep-blue);
+}
+
+.welcome-banner h2 {
+  margin: 0 0 var(--space-1);
+  font-size: 2rem;
+}
+
+.welcome-banner p {
+  max-width: 560px;
+  margin: 0;
+  color: var(--color-soft-blue);
+}
+
+/* The row of number cards (JavaScript fills it in) */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.stat-card {
+  padding: var(--space-3);
+  background-color: var(--color-deep-blue);
+  border: 1px solid rgba(0, 200, 245, 0.2);
+  border-left: 4px solid var(--color-cyan);
+  border-radius: var(--radius);
+}
+
+/* Green and red edges for cards about available and occupied slots */
+.stat-card.is-good {
+  border-left-color: var(--color-available);
+}
+
+.stat-card.is-bad {
+  border-left-color: var(--color-occupied);
+}
+
+.stat-number {
+  display: block;
+  font-size: 2.25rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.stat-label {
+  display: block;
+  margin-top: 4px;
+  font-weight: 600;
+}
+
+.stat-note {
+  display: block;
+  margin-top: 4px;
+  color: var(--color-muted);
+  font-size: var(--font-size-small);
+}
+
+/* A small lift when the mouse is over a quick-action card */
+.quick-action {
+  transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+.quick-action:hover {
+  transform: translateY(-3px);
+}
+
+/* ===== FINDMYSPOT IMAGE LOGO ===== */
+.logo-image {
+  width: 55px;
+  height: 55px;
+  object-fit: contain;
+  display: block;
+}
+
+/* ===== LOGO AND BRAND NAME ===== */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+}
+
+.logo-image {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  display: block;
+}
+
+.logo-text {
+  color: var(--color-white);
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.logo-text span {
+  color: var(--color-cyan);
+}
+
+/* ===== FOUNDER PROFILE CARDS ===== */
+.founder-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
+}
+
+.founder-card {
+  text-align: center;
+  padding: 25px;
+}
+
+.founder-photo {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 15px;
+  display: block;
+}
+
+.founder-socials {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.founder-socials a {
+  text-decoration: none;
+  font-weight: 600;
+  color: var(--color-cyan);
+}
+
+
+/* =========================================
+   14. OUR PROTOTYPE SECTION
+   ========================================= */
+
+/* Screenshot card layout */
+.prototype-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+
+/* Individual prototype cards */
+.prototype-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--color-deep-blue);
+  border: 1px solid rgba(0, 200, 245, 0.2);
+  border-radius: var(--radius);
+  transition: transform 0.25s, border-color 0.25s,
+              box-shadow 0.25s;
+}
+
+.prototype-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--color-cyan);
+  box-shadow: var(--glow-cyan);
+}
+
+/* Dashboard screenshots */
+.prototype-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
+  background-color: #04101F;
+  border-radius: 8px;
+  margin-bottom: var(--space-2);
+}
+
+/* Prototype card headings */
+.prototype-card h3 {
+  margin: 0 0 var(--space-1);
+  color: var(--color-white);
+}
+
+/* Prototype card descriptions */
+.prototype-card p {
+  margin: 0;
+  color: var(--color-muted);
+}
+
+/* Video demonstration area */
+.prototype-video-section {
+  margin-top: var(--space-5);
+  padding: var(--space-4);
+  text-align: center;
+  background: linear-gradient(
+    135deg,
+    var(--color-deep-blue),
+    var(--color-navy)
+  );
+  border: 1px solid rgba(0, 200, 245, 0.25);
+  border-radius: var(--radius);
+}
+
+/* Video heading */
+.prototype-video-section h2 {
+  margin: 0 0 var(--space-1);
+}
+
+/* Video introduction */
+.prototype-video-section p {
+  margin: 0 0 var(--space-3);
+  color: var(--color-muted);
+}
+
+/* Actual demonstration video */
+.prototype-video {
+  display: block;
+  width: 100%;
+  max-width: 900px;
+  max-height: 550px;
+  margin: 0 auto;
+  background-color: #000000;
+  border: 1px solid rgba(0, 200, 245, 0.3);
+  border-radius: var(--radius);
+}
+
+/* =========================================
+   15. PROTOTYPE RESPONSIVE DESIGN
+   ========================================= */
+
+/* Tablets and smaller screens */
+@media (max-width: 800px) {
+  .prototype-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .prototype-video-section {
+    padding: var(--space-3);
+  }
+}
+
+/* Mobile phones */
+@media (max-width: 550px) {
+  .prototype-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .prototype-image {
+    aspect-ratio: 16 / 9;
+  }
+
+  .prototype-video-section {
+    margin-top: var(--space-4);
+    padding: var(--space-2);
+  }
+
+  .prototype-video {
+    max-height: 300px;
+  }
+}
+
+
+/* =========================================
+   16. STANDARDIZED DASHBOARD ACCOUNT CONTROLS
+   ========================================= */
+
+/* Let the sidebar menu use the available vertical space */
+.sidebar-nav {
+  flex: 1;
+}
+
+/* Log Out stays at the bottom of the sidebar */
+.sidebar-footer {
+  margin-top: auto;
+  padding-top: var(--space-3);
+  border-top: 1px solid rgba(169, 188, 211, 0.15);
+}
+
+.sidebar-logout {
+  display: block;
+  width: 100%;
+  text-align: left;
+}
+
+/* Notifications and Profile controls in the topbar */
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+}
+
+.topbar-action {
+  padding: 8px 14px;
+  border: 1px solid rgba(0, 200, 245, 0.3);
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--color-soft-blue);
+  font-family: inherit;
+  font-size: var(--font-size-small);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.topbar-action:hover {
+  background-color: rgba(0, 200, 245, 0.1);
+  border-color: var(--color-cyan);
+  color: var(--color-cyan);
+}
+
+.topbar-action.active {
+  background-color: rgba(8, 123, 213, 0.35);
+  border-color: var(--color-cyan);
+  color: var(--color-white);
+}
+
+/* Keep the account controls aligned on smaller screens */
+@media (max-width: 800px) {
+  .sidebar-nav {
+    flex: 0 0 auto;
+  }
+
+  .sidebar-footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: var(--space-2);
+    padding-top: var(--space-2);
+  }
+
+  .sidebar-logout {
+    width: auto;
+  }
+
+  .topbar {
+    flex-wrap: wrap;
+  }
+
+  .topbar-actions {
+    justify-content: flex-end;
+  }
+}
+
+@media (max-width: 550px) {
+  .topbar-actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .topbar-action {
+    flex: 1;
+  }
+}
+
+
+
+/* Fix: Make topbar account icons compact */
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  width: auto;
+  gap: 10px;
+}
+
+.topbar-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  padding: 0;
+}
+
+.topbar-action svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Keep icons side by side on mobile */
+@media (max-width: 550px) {
+  .topbar-actions {
+    width: auto;
+    justify-content: flex-start;
+  }
+
+  .topbar-action {
+    flex: 0 0 44px;
+  }
+}
+

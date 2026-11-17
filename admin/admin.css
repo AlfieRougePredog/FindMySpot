@@ -1,0 +1,292 @@
+/* =====================================================
+   FINDMYSPOT - ADMIN.CSS
+   Styles that belong only to the admin dashboard.
+   The shared dashboard layout is in css/main.css.
+   ===================================================== */
+
+
+/* ===== 1. INVITATION CODES: FORM ===== */
+.admin-note {
+  margin: 0 0 var(--space-3);
+  color: var(--color-muted);
+  font-size: var(--font-size-small);
+}
+
+/* The form fields sit in a row, and wrap to new lines on small screens */
+.code-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--space-2);
+  margin-bottom: var(--space-2);
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 200px;
+}
+
+.form-field label {
+  font-size: var(--font-size-small);
+  font-weight: 600;
+}
+
+.form-field select,
+.form-field input {
+  padding: 12px 14px;
+  background-color: var(--color-deep-blue);
+  border: 1px solid rgba(169, 188, 211, 0.35);
+  border-radius: var(--radius);
+  color: var(--color-white);
+  font-family: inherit;
+  font-size: var(--font-size-base);
+}
+
+/* When the admin clicks into a field, it glows cyan */
+.form-field select:focus,
+.form-field input:focus {
+  outline: none;
+  border-color: var(--color-cyan);
+  box-shadow: var(--glow-cyan);
+}
+
+.code-message {
+  min-height: 1.5em;
+  margin: 0 0 var(--space-3);
+  color: var(--color-cyan);
+  font-size: var(--font-size-small);
+}
+
+.code-message.error {
+  color: var(--color-occupied);
+}
+
+
+/* ===== 2. INVITATION CODES: TABLE ===== */
+.codes-title {
+  margin: 0 0 var(--space-2);
+}
+
+.no-codes {
+  padding: var(--space-3);
+  border: 2px dashed rgba(0, 200, 245, 0.3);
+  border-radius: var(--radius);
+  text-align: center;
+  color: var(--color-muted);
+}
+
+/* On a narrow screen, the table scrolls sideways inside this box */
+.table-wrapper {
+  overflow-x: auto;
+  border: 1px solid rgba(0, 200, 245, 0.2);
+  border-radius: var(--radius);
+}
+
+.codes-table {
+  width: 100%;
+  min-width: 720px;
+  border-collapse: collapse;
+  background-color: var(--color-deep-blue);
+  font-size: var(--font-size-small);
+}
+
+.codes-table th,
+.codes-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid rgba(169, 188, 211, 0.15);
+  text-align: left;
+  vertical-align: middle;
+}
+
+.codes-table th {
+  color: var(--color-muted);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.codes-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* The code itself uses a fixed-width font, so the letters are easy to read */
+.code-text {
+  font-family: Consolas, "Courier New", monospace;
+  font-size: var(--font-size-base);
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+
+.code-actions {
+  display: flex;
+  gap: var(--space-1);
+  white-space: nowrap;
+}
+
+
+/* ===== 3. INVITATION CODES: STATUS BADGES ===== */
+.code-status {
+  display: inline-block;
+  padding: 4px 12px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Green: the code can be used */
+.code-status.is-active {
+  background-color: rgba(34, 197, 94, 0.15);
+  border-color: rgba(34, 197, 94, 0.4);
+  color: var(--color-available);
+}
+
+/* Red: revoked */
+.code-status.is-revoked {
+  background-color: rgba(239, 68, 68, 0.15);
+  border-color: rgba(239, 68, 68, 0.4);
+  color: var(--color-occupied);
+}
+
+/* Gray: expired or used up (the code is finished, nothing is wrong) */
+.code-status.is-expired,
+.code-status.is-used-up {
+  background-color: rgba(169, 188, 211, 0.15);
+  border-color: rgba(169, 188, 211, 0.4);
+  color: var(--color-muted);
+}
+
+
+
+/* ===== 4. ESTABLISHMENT APPLICATIONS ===== */
+/* The applications table has one more column, so it needs a little more width */
+.applications-table {
+  min-width: 860px;
+}
+
+/* The status badge: cyan = waiting, green = approved, red = rejected */
+.application-status {
+  display: inline-block;
+  padding: 4px 12px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-size: var(--font-size-small);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.application-status.is-pending {
+  background-color: rgba(0, 200, 245, 0.15);
+  border-color: rgba(0, 200, 245, 0.4);
+  color: var(--color-cyan);
+}
+
+.application-status.is-approved {
+  background-color: rgba(34, 197, 94, 0.15);
+  border-color: rgba(34, 197, 94, 0.4);
+  color: var(--color-available);
+}
+
+.application-status.is-rejected {
+  background-color: rgba(239, 68, 68, 0.15);
+  border-color: rgba(239, 68, 68, 0.4);
+  color: var(--color-occupied);
+}
+
+/* The panel that opens under the table when the admin clicks Review */
+.application-panel {
+  max-width: 720px;
+  margin-top: var(--space-3);
+  padding: var(--space-3);
+  background-color: var(--color-deep-blue);
+  border: 1px solid rgba(0, 200, 245, 0.25);
+  border-radius: var(--radius);
+}
+
+.application-panel h3 {
+  margin: 0 0 var(--space-1);
+}
+
+.application-panel .application-status {
+  margin-bottom: var(--space-2);
+}
+
+/* One line of information: a label on the left, the value on the right */
+.app-detail-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(169, 188, 211, 0.15);
+  font-size: var(--font-size-small);
+}
+
+.app-detail-label {
+  min-width: 160px;
+  color: var(--color-muted);
+}
+
+.app-detail-value {
+  flex: 1;
+  overflow-wrap: anywhere;      /* Long emails or file names wrap instead of overflowing */
+}
+
+.application-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+
+
+
+/* ===== 5. USER AND STAFF ACCOUNTS ===== */
+/* The staff table has seven columns, so it needs more width */
+.accounts-table {
+  min-width: 860px;
+}
+
+/* Green: an active driver account */
+.application-status.is-active {
+  background-color: rgba(34, 197, 94, 0.15);
+  border-color: rgba(34, 197, 94, 0.4);
+  color: var(--color-available);
+}
+
+/* Gray: a suspended account (blocked, but nothing is deleted) */
+.application-status.is-suspended {
+  background-color: rgba(169, 188, 211, 0.15);
+  border-color: rgba(169, 188, 211, 0.4);
+  color: var(--color-muted);
+}
+
+
+
+/* ===== 6. PARKING AREAS ===== */
+/* The parking areas table has two buttons in the last column, so it needs more width */
+.areas-table {
+  min-width: 900px;
+}
+
+/* Space above the second table title */
+.areas-title {
+  margin-top: var(--space-4);
+}
+
+/* The two buttons in the parking area form sit in the same row as the fields */
+.application-panel .code-form {
+  margin-bottom: var(--space-1);
+}
+
+
+
+/* ===== 7. TABLE POLISH ===== */
+/* A darker header row, and a soft highlight on the row under the mouse */
+.codes-table thead th {
+  background-color: rgba(6, 21, 44, 0.5);
+}
+
+.codes-table tbody tr:hover {
+  background-color: rgba(0, 200, 245, 0.06);
+}

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Basic page settings -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Log In | FindMySpot</title>
+
+  <!-- Shared CSS first, then the authentication CSS -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/authentication.css">
+</head>
+<body class="auth-body">
+
+  <!-- ===== HEADER: logo and link back to the landing page ===== -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-mark">P</span>
+        <span class="logo-text">FindMy<span>Spot</span></span>
+      </a>
+      <a href="index.html" class="back-link">&larr; Back to Home</a>
+    </div>
+  </header>
+
+  <!-- ===== LOGIN CARD ===== -->
+  <main class="auth-page">
+    <div class="auth-card">
+
+      <h1 class="auth-title">Log In</h1>
+      <p class="auth-subtitle">Choose how you use FindMySpot.</p>
+
+      <!-- Role selector: Driver or Parking Staff -->
+      <div class="role-tabs" role="group" aria-label="Choose account type">
+        <button type="button" class="role-tab active" data-role="driver" aria-pressed="true">Driver</button>
+        <button type="button" class="role-tab" data-role="staff" aria-pressed="false">Parking Staff</button>
+      </div>
+
+      <!-- This text changes when the role changes -->
+      <p class="role-description" id="role-description">
+        Log in to find parking and check reported slot availability.
+      </p>
+
+      <!-- TEMPORARY: shows the demo username and password. Removed in Phase 5. -->
+      <p class="auth-note" id="demo-note"></p>
+
+      <!-- Login form -->
+      <form id="login-form">
+        <div class="form-group">
+          <label for="login-identifier">Username or Email</label>
+          <input type="text" id="login-identifier" name="identifier" autocomplete="username" required>
+        </div>
+
+        <div class="form-group">
+          <label for="login-password">Password</label>
+          <input type="password" id="login-password" name="password" autocomplete="current-password" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-full" id="login-submit">Log In as Driver</button>
+
+        <!-- Messages from JavaScript appear here -->
+        <p class="form-message" id="form-message" role="status"></p>
+      </form>
+
+      <!-- Other options -->
+      <div class="auth-links">
+        <p>Don't have an account? <a href="signup.html">Sign up</a></p>
+        <p>Own a parking area? <a href="register-establishment.html">Register your establishment</a></p>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Demo accounts first (TEMPORARY), then the authentication JavaScript, which uses them -->
+  <script src="js/demo-auth.js"></script>
+  <script src="js/authentication.js"></script>
+</body>
+</html>
